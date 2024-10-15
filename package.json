@@ -1,0 +1,23 @@
+{
+  "name": "linkedin-graphql-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "apollo-server": "^3.13.0",
+    "dataloader": "^2.2.2",
+    "nodemon": "^3.1.7",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "prisma": "^5.20.0"
+  }
+}
