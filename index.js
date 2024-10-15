@@ -73,12 +73,25 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
         users: async () => {
-            return prisma.user.findMany();
+            const users = await prisma.user.findMany();
+            // Convertir le champ skills en tableau s'il est stocké sous forme de chaîne
+            return users.map(user => ({
+                ...user,
+                skills: user.skills.split(','), // On divise la chaîne pour la convertir en tableau
+            }));
         },
         user: async (_, { id }) => {
-            return prisma.user.findUnique({
+            const user = await prisma.user.findUnique({
                 where: { id },
             });
+            // Si trouvé, convertir les skills en tableau
+            if (user) {
+                return {
+                    ...user,
+                    skills: user.skills.split(','), // On s'assure que les compétences sont renvoyées sous forme de tableau
+                };
+            }
+            return null;
         },
         posts: async () => {
             return prisma.post.findMany();
